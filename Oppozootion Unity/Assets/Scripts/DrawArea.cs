@@ -16,7 +16,7 @@ public class DrawArea : MonoBehaviour
     //Variables
     public int numberOfAnimalCards=0;
     public GameObject AnimalcardPrefab;
-    public GameObject[] AnimalcardSlots;
+    [HideInInspector]public GameObject[] AnimalcardSlots;
     
     
     //Draw area exists between the points (-5,-5) and (5,5) with (0,0) being the center
@@ -31,22 +31,33 @@ public class DrawArea : MonoBehaviour
 
     private void GenerateAnimalCardSlots()
     {
-        float cardSpacing = 10f/((numberOfAnimalCards/2)+1);
+        float cardSpacing = 10f / ((numberOfAnimalCards / 2) + 1);
+        if (numberOfAnimalCards % 2 == 1)
+        {
+            cardSpacing = 10f / (((numberOfAnimalCards + 1) / 2) + 1);
+        }
+        else
+        {
+            cardSpacing = 10f / ((numberOfAnimalCards / 2) + 1);
+        }
+
+
         float currentspacing = 0f;
 
 
-        for(int i = 0; i < numberOfAnimalCards; i++)
+        for (int i = 0; i < numberOfAnimalCards; i++)
         {
             GameObject newSlot = new GameObject();
-            if (i % 2==0)
+            if (i % 2 == 0)
             {
                 currentspacing += cardSpacing;
             }
-            newSlot.transform.position = new Vector3((-5f)+currentspacing, 0, ((i % 2) * 2) - 1);
+            newSlot.transform.position = new Vector3((-5f) + currentspacing, 0, ((i % 2) * 3) );
             AnimalcardSlots[i] = newSlot;
         }
         Invoke("fillCards", 1f);
     }
+
 
     // Update is called once per frame
     void Update()
