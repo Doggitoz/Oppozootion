@@ -19,20 +19,25 @@ public class ScriptableObj : MonoBehaviour
 
     [SerializeField]
     SOList list;
+    public GameObject bundlePrefab;
+    public GameObject[] bundleList = new GameObject[3];
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-     //   Debug.Log(card.animalName + " is the card name");
-        ReadList(0);
+        bundleList[0] = Instantiate(bundlePrefab);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        for (int i = 0; i < list.cardList.Count; i++)
+        {
+            if (bundleList[0] != null)
+                bundleList[0].GetComponent<BundleCards>().RemoveAnimal(list.cardList[i].name);
+        }
     }
 
     void ReadList(int num)
