@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd831d7006cf27c48be8d91354f70a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfAnimalCards: 6
+  numberOfAnimalCards: 7
   AnimalcardPrefab: {fileID: 3202958594414379489, guid: 5311cc15054681f4485c5321183fa6ac, type: 3}
   AnimalcardSlots: []
 --- !u!1 &487376944

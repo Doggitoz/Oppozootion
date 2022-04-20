@@ -16,6 +16,8 @@ public class DrawArea : MonoBehaviour
     //Variables
     public int numberOfAnimalCards=0;
     public GameObject AnimalcardPrefab;
+    
+    [HideInInspector]
     public GameObject[] AnimalcardSlots;
     
     
@@ -31,7 +33,17 @@ public class DrawArea : MonoBehaviour
 
     private void GenerateAnimalCardSlots()
     {
-        float cardSpacing = 10f/((numberOfAnimalCards/2)+1);
+        float cardSpacing = 10f / ((numberOfAnimalCards / 2) + 1);
+        if (numberOfAnimalCards % 2 == 1)
+        {
+            cardSpacing = 10f / (((numberOfAnimalCards+1)/ 2) + 1);
+        }
+        else
+        {
+            cardSpacing = 10f / ((numberOfAnimalCards / 2) + 1);
+        }
+        
+        
         float currentspacing = 0f;
 
 
@@ -42,7 +54,7 @@ public class DrawArea : MonoBehaviour
             {
                 currentspacing += cardSpacing;
             }
-            newSlot.transform.position = new Vector3((-5f)+currentspacing, 0, ((i % 2) * 2) - 1);
+            newSlot.transform.position = new Vector3((-5f)+currentspacing, 0, ((i % 2) * 3) - 3);
             AnimalcardSlots[i] = newSlot;
         }
         Invoke("fillCards", 1f);
