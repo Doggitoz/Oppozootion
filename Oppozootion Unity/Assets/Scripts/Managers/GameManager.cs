@@ -54,19 +54,23 @@ public class GameManager : MonoBehaviour
     {
         pOneScore, pTwoScore, pThreeScore, pFourScore
     };
+    public GameObject player;
+    public GameObject[] AI = new GameObject[3];
 
     private Dictionary<string, System.Action> startMethods = new Dictionary<string, System.Action>();
 
     [Header("Set in Inspector")]
     public int pointsToWinGame = 20;
     public float turnTimer = 30f;
+    private static float timeSpent;
 
     //Variable to store game state
     private string gameState;
-    private string gameplayState;
+    private int playerTurn;
 
     private void Start()
     {
+        //Instantiate
         //Populate dictionary for start method calling
         startMethods.Add("menu", EnterMenuState);
         startMethods.Add("gameplay", EnterGameplayState);
@@ -74,6 +78,7 @@ public class GameManager : MonoBehaviour
 
         gameState = "menu";
         EnterMenuState();
+        ChangeGameState("gameplay");
     }
 
     private void Update()
@@ -96,6 +101,29 @@ public class GameManager : MonoBehaviour
 
                 //Run Gameplay State Logic
 
+                timeSpent += Time.deltaTime;
+                Debug.Log("Player " + playerTurn + "'s turn");
+
+                //Logic for turn timer
+                if (timeSpent > turnTimer)
+                {
+                    if (playerTurn >= 4)
+                    {
+                        playerTurn = 1;
+                    } else
+                    {
+                        playerTurn = playerTurn + 1;
+                    }
+                    timeSpent = 0;
+                    return;
+                }
+
+                //Logic for disabling/enabling player action and AI scripts
+                /**NOT IMPLEMENTED YET
+                 * 
+                 * 
+                 * 
+                 */
 
                 //End Gameplay State Logic
 
@@ -146,9 +174,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PlayerActionCompleted()
+    {
+        playerTurn = playerTurn + 1;
+        timeSpent = 0;
+    }
+
     public void StartGame()
     {
-
+        gameState = "gameplay";
     }
 
     public void ExitGame()
@@ -203,9 +237,9 @@ public class GameManager : MonoBehaviour
 
     #region Game State Handling
     //Method to call to change the game state from other classes
-    public void ChangeGameState(string gameState)
-    {
-        gameState = gameState.ToLower();
+    public void ChangeGameState(string newState)
+    {   
+        gameState = newState.ToLower();
         startMethods[gameState]();
     }
 
@@ -218,6 +252,7 @@ public class GameManager : MonoBehaviour
     private void EnterGameplayState()
     {
         Debug.Log("Entering Gameplay State");
+        playerTurn = 1;
     }
     private void EnterResultsState()
     {

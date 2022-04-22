@@ -73,4 +73,8 @@ public class BundleCards : MonoBehaviour
     }
 
     //Potentially make a function that completed all animals at once instead of one at a time. This will need access to player inventory to function. Add later
+    private void CompleteBundle()
+    {
+
+    }
 }
