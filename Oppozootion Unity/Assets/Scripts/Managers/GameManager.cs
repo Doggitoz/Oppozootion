@@ -75,6 +75,11 @@ public class GameManager : MonoBehaviour
         gameState = "menu";
         EnterMenuState();
     }
+    private void Awake()
+    {
+        CheckGameManagerIsInScene();
+
+    }
 
     private void Update()
     {
@@ -148,7 +153,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-
+        EditorSceneManager.LoadScene("level_00");
     }
 
     public void ExitGame()

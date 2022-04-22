@@ -19,6 +19,8 @@ public class StartCanvas : MonoBehaviour
    
     GameManager gm; //reference to game manager
 
+    public GameObject canvas;
+
     [Header("Canvas SETTINGS")]
     public Text titleTextbox; //textbox for the title
     public Text creditsTextbox; //textbox for the credits
@@ -27,11 +29,18 @@ public class StartCanvas : MonoBehaviour
     private void Start()
     {
          gm = GameManager.GM; //find the game manager
+        if(gm == null)
+        {
+            Debug.LogWarning("gm is null");
+            gm = GameManager.GM;
+        }
          
          //Set the Canvas text from GM reference
          titleTextbox.text = gm.gameTitle; 
          creditsTextbox.text = gm.gameCredits;
          copyrightTextbox.text = gm.copyrightDate;
+
+        canvas = GameObject.Find("Canvas");
     }
 
 
@@ -46,6 +55,15 @@ public class StartCanvas : MonoBehaviour
     {
         gm.ExitGame(); //refenece the ExitGame method on the game manager
 
+    }
+
+    public void ShowRules()
+    {
+        canvas.SetActive(false); //hide main menu to show rules
+    }
+    public void HideRules()
+    {
+        canvas.SetActive(true); //unhide main menu
     }
 
 }
