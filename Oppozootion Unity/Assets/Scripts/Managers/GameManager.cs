@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     [Header("General Information")]
     public string gameTitle = "Oppozootion";
     public string gameCredits = "Created by ";
+    public string copyrightDate = "2022";
 
     [Header("Game Settings")]
     public string tempHolder = "";
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour
     public static int pTwoScore;
     public static int pThreeScore;
     public static int pFourScore;
-    public int[] playerScores =
+    public static int[] playerScores =
     {
         pOneScore, pTwoScore, pThreeScore, pFourScore
     };
@@ -145,6 +146,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void StartGame()
+    {
+
+    }
+
+    public void ExitGame()
+    {
+
+    }
 
     #region Scene Management
 
