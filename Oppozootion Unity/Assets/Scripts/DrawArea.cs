@@ -2,8 +2,8 @@
  * Created by: Ben Jenkins
  * Date Created: April 18,2022
  * 
- * Last Edited by: NA
- * Last Edited: NA
+ * Last Edited by: Coleton Wheeler
+ * Last Edited: April 22, 2022
  * 
  * Description: Handles generating new cards to the draw area
 ****/
@@ -79,6 +79,8 @@ public class DrawArea : MonoBehaviour
     private void DrawCard(Vector3 pos)
     {
         GameObject Animalcard = Instantiate(AnimalcardPrefab);
+        Animalcard.name = "Animal Card";
+        Animalcard.transform.parent = transform;
         Animalcard.transform.position = pos;
     }
 }
