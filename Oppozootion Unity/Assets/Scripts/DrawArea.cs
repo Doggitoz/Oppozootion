@@ -16,6 +16,9 @@ public class DrawArea : MonoBehaviour
     //Variables
     public int numberOfAnimalCards=0;
     public GameObject AnimalcardPrefab;
+    public List<Cards> AnimalCards;
+
+
     [HideInInspector]public GameObject[] AnimalcardSlots;
     
     
@@ -79,7 +82,15 @@ public class DrawArea : MonoBehaviour
     private void DrawCard(Vector3 pos)
     {
         GameObject Animalcard = Instantiate(AnimalcardPrefab);
-        Animalcard.name = "Animal Card";
+
+        //Load Random Animal Card
+        Cards newCard = AnimalCards[Random.Range(0, AnimalCards.Count)];
+        CardData currentCardData = Animalcard.GetComponent<CardData>();
+        currentCardData.cardData = newCard;
+        currentCardData.Init();
+
+        //Set World Data
+        Animalcard.name = newCard.name + " card";
         Animalcard.transform.parent = transform;
         Animalcard.transform.position = pos;
     }
