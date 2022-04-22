@@ -50,7 +50,7 @@ public class HoverScript : MonoBehaviour
     {
         if (hover)
         {
-            GameObject.Find("Player1").GetComponent<Inventory>().AddCard(this.gameObject.GetComponent<CardData>().cardData);
+            GameObject.Find("Player1").GetComponent<Inventory>().AddCard(this.gameObject);
         }
     }
 }

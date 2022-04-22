@@ -19,28 +19,32 @@ public class Inventory : MonoBehaviour
     public int maxCardNumber = 7;
     public int maxBundleNumber = 3;
 
-    public Cards[] cardInventory;
+    public GameObject[] cardInventory;
     public GameObject[] bundleInvtory;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        cardInventory = new Cards[maxCardNumber];
+        cardInventory = new GameObject[maxCardNumber];
         bundleInvtory = new GameObject[maxBundleNumber];
 
     }
 
 
-    public void AddCard(Cards card) //add a card to array
+    public void AddCard(GameObject obj) //add a card to array
     {
+        
+        
         for (int i = 0; i < maxCardNumber; i++)
         {
             if (cardInventory[i] != null) //if there's a card in this index, continue the iteration
                 continue;
             else
             {
-                cardInventory[i] = card; //add the card into this index of the array
+                cardInventory[i] = obj; //add the card into this index of the array
+                Debug.Log(obj.transform.parent);
+                GameObject.Find("Player1").GetComponent<PlayerScript>().addAnimalCard(obj);
                 return;
             }
 
@@ -85,7 +89,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < maxCardNumber; i++)
         {
-            if (cardInventory[i].animalName != str) //if the current index's animal's name doesn't equal to the name of the card
+            if (cardInventory[i].GetComponent<CardData>().animalName != str) //if the current index's animal's name doesn't equal to the name of the card
                                                     //we want to remove, continue the iteration
                 continue;
             else
