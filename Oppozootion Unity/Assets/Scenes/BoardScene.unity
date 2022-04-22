@@ -391,6 +391,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfAnimalCards: 8
   AnimalcardPrefab: {fileID: 3202958594414379489, guid: 5311cc15054681f4485c5321183fa6ac, type: 3}
+  AnimalCards:
+  - {fileID: 11400000, guid: 2913651008e6445618db1b777962917d, type: 2}
+  - {fileID: 11400000, guid: 7e13f58bf23eb4cd5bfa3aa23f464cda, type: 2}
+  - {fileID: 11400000, guid: fcd0b4f5f75954fbea0322244fa43de0, type: 2}
+  - {fileID: 11400000, guid: 3c98f5a6d96a24bba9594dbb16ca431c, type: 2}
+  - {fileID: 11400000, guid: 4fc6bc1cf42ec4355a36d87807a39e4f, type: 2}
+  - {fileID: 11400000, guid: 664618b34792f450f9021051fe0efe02, type: 2}
+  - {fileID: 11400000, guid: 7cd66fe9cb60d437a9418c8aca0a13d6, type: 2}
+  - {fileID: 11400000, guid: 89f088d0b53f54f4ab55f792b6183397, type: 2}
   AnimalcardSlots: []
 --- !u!1 &487376944
 GameObject:
