@@ -34,16 +34,9 @@ public class HUDCanvas : MonoBehaviour
     private int scoreP3;
     private int scoreP4;
     private int maxScore;
-<<<<<<< HEAD
-    private int timer;
-=======
-<<<<<<< Updated upstream
-    private int timer = 30;
-=======
     private float maxTimeAllowed;
     private float timer;
->>>>>>> Stashed changes
->>>>>>> CombinedWork
+
 
 
 
