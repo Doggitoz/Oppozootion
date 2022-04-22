@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, System.Action> startMethods = new Dictionary<string, System.Action>();
 
     [Header("Set in Inspector")]
-    public int pointsToWinGame = 20;
-    public float turnTimer = 30f;
+    public static int pointsToWinGame = 20;
+    public static float turnTimer = 30f;
     private static float timeSpent;
 
     //Variable to store game state
