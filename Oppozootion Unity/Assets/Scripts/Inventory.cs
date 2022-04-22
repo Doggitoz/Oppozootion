@@ -16,8 +16,8 @@ public class Inventory : MonoBehaviour
 {
 
     [SerializeField]
-    public int maxCardNum = 7;
-    public int maxBundleNum = 3;
+    public int maxCardNumber = 7;
+    public int maxBundleNumber = 3;
 
     public Cards[] cardInventory;
     public GameObject[] bundleInvtory;
@@ -26,53 +26,42 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cardInventory = new Cards[maxCardNum];
-        bundleInvtory = new GameObject[maxBundleNum];
+        cardInventory = new Cards[maxCardNumber];
+        bundleInvtory = new GameObject[maxBundleNumber];
+
     }
-    
+
 
     void AddCard(Cards card) //add a card to array
     {
-        if (cardInventory.Length > 7)
+        for (int i = 0; i < maxCardNumber; i++)
         {
-            Debug.Log("You already have the maximum number of animal cards!");
-            return;
-        }
-        else
-        {
-            for (int i = 0; i < maxCardNum; i++)
+            if (cardInventory[i] != null) //if there's a card in this index, continue the iteration
+                continue;
+            else
             {
-                if (cardInventory[i] != null)
-                    continue;
-                else
-                {
-                    cardInventory[i] = card;
-                    return;
-                }
+                cardInventory[i] = card; //add the card into this index of the array
+                return;
             }
+
         }
+
     }
 
-    void AddBundle(GameObject obj) //add a bundle to array
+    void AddBundle(GameObject obj) //add a bundle card to array
     {
-        if (bundleInvtory.Length > 3)
+
+        for (int i = 0; i < maxBundleNumber; i++)
         {
-            Debug.Log("You already have the maximum number bundle cards!");
-            return;
-        }
-        else
-        {
-            for (int i = 0; i < maxBundleNum; i++)
+            if (bundleInvtory[i] != null) //if there's a bundle card already in this index, continue the iteration
+                continue;
+            else
             {
-                if (bundleInvtory[i] != null)
-                    continue;
-                else
-                {
-                    bundleInvtory[i] = obj;
-                    return;
-                }
+                bundleInvtory[i] = obj; //add the bundle card into this index of the array
+                return;
             }
         }
+
     }
 
     void RemoveCard(int pos) //remove one card based on the index of the card in the array
@@ -94,13 +83,14 @@ public class Inventory : MonoBehaviour
     void RemoveCard(string str) // remove card by interating through the array and find the card with the corresponding name
                                 // [first letter of the animal name MUST be CAPITALIZED]
     {
-        for (int i = 0; i < maxCardNum; i++)
+        for (int i = 0; i < maxCardNumber; i++)
         {
-            if (cardInventory[i].animalName != str)
+            if (cardInventory[i].animalName != str) //if the current index's animal's name doesn't equal to the name of the card
+                                                    //we want to remove, continue the iteration
                 continue;
             else
             {
-                cardInventory[i] = null;
+                cardInventory[i] = null;            //remove the card
                 return;
             }
         }
