@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     //Variable to store game state
     private string gameState;
+    private string gameplayState;
 
     private void Start()
     {
@@ -94,7 +95,6 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Running Gameplay State");
 
                 //Run Gameplay State Logic
-
 
 
                 //End Gameplay State Logic

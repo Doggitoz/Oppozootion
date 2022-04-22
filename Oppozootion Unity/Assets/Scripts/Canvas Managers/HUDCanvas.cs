@@ -34,7 +34,7 @@ public class HUDCanvas : MonoBehaviour
     private int scoreP3;
     private int scoreP4;
     private int maxScore;
-    private int timer = 30;
+    private int timer;
 
 
 
