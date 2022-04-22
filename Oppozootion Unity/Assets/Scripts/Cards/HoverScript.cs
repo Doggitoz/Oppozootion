@@ -17,6 +17,8 @@ public class HoverScript : MonoBehaviour
     public GameObject thisCubeSlot;
     [HideInInspector]
     public GameObject HoverSpot;
+    [HideInInspector]
+    private bool hover;
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +37,20 @@ public class HoverScript : MonoBehaviour
     private void OnMouseEnter()
     {
         this.HoverSpot.SetActive(true);
-        //hover = true;
+        hover = true;
     }
 
     private void OnMouseExit()
     {
         this.HoverSpot.SetActive(false);
-        //hover = false;
+        hover = false;
+    }
+
+    private void OnMouseDown()
+    {
+        if (hover)
+        {
+            GameObject.Find("Player1").GetComponent<Inventory>().AddCard(this.gameObject.GetComponent<CardData>().cardData);
+        }
     }
 }

@@ -19,7 +19,9 @@ public class PlayerScript : MonoBehaviour
 
     [HideInInspector] public float height = 2.5f;
     [HideInInspector] public float AnimalAreaWidth = 7.5f;
-    [HideInInspector] public float BundleAreaWidth = 2.5f;
+    [HideInInspector] public float BundleAreaHeight = 5f;
+
+    [HideInInspector] public GameObject thisGO;
 
 
     //PlayerCardArea is 5 long and 2.5 wide for internal coords of (5,2.5) to (-5,-2.5)
@@ -30,7 +32,8 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         AnimalCards = new List<GameObject>();
-        BundleCards = new List<GameObject>(); 
+        BundleCards = new List<GameObject>();
+        thisGO = this.gameObject;
     }
 
     // Update is called once per frame
@@ -42,6 +45,7 @@ public class PlayerScript : MonoBehaviour
 
     public void addAnimalCard(GameObject obj)
     {
+        obj.transform.parent = GameObject.Find("Player1").transform;
         AnimalCards.Add(obj);
     }
     public void addBundleCard(GameObject obj)
@@ -51,10 +55,36 @@ public class PlayerScript : MonoBehaviour
 
     private void UpdateAnimalCards()
     {
+        float cardSpacing = AnimalAreaWidth / ((AnimalCards.Count / 2) + 1);
+        if (AnimalCards.Count % 2 == 1)
+        {
+            cardSpacing = AnimalAreaWidth / (((AnimalCards.Count + 1) / 2) + 1);
+        }
+        else
+        {
+            cardSpacing = AnimalAreaWidth / ((AnimalCards.Count / 2) + 1);
+        }
 
+
+        float currentspacing = 0f;
+        //float AnimalCardHeightSpacing;
+        
+
+        for (int i = 0; i < AnimalCards.Count; i++)
+        {
+            if (i % 2 == 0)
+            {
+                currentspacing += cardSpacing;
+            }
+            AnimalCards[i].transform.localPosition = new Vector3((5f) - currentspacing, 0, ((i % 2)*2.5f-1.25f));
+        }
     }
     private void UpdateBundleCards()
     {
-
+        float cardSpacing = BundleAreaHeight / ((BundleCards.Count / 2) + 1);
+        for (int i = 0; i < BundleCards.Count; i++)
+        {
+            BundleCards[i].transform.localPosition = new Vector3((-2.5f) - (2.5f / 2f), 0, 2.5f + cardSpacing); ;
+        }
     }
 }

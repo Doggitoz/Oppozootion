@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
     }
 
 
-    void AddCard(Cards card) //add a card to array
+    public void AddCard(Cards card) //add a card to array
     {
         for (int i = 0; i < maxCardNumber; i++)
         {
