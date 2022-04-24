@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     };
     public GameObject player;
     public GameObject[] AI = new GameObject[3];
+    public GameObject board;
 
     private Dictionary<string, System.Action> startMethods = new Dictionary<string, System.Action>();
 
@@ -64,9 +65,19 @@ public class GameManager : MonoBehaviour
     public static float turnTimer = 30f;
     private static float timeSpent;
 
+    [Header("Prefabs")]
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject AIPrefab;
+    [SerializeField] private GameObject boardPrefab;
+
     //Variable to store game state
     private string gameState;
-    private int playerTurn;
+    public int playerTurn;
+
+    private void Awake()
+    {
+        CheckGameManagerIsInScene();
+    }
 
     private void Start()
     {
@@ -100,30 +111,12 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Running Gameplay State");
 
                 //Run Gameplay State Logic
-
-                timeSpent += Time.deltaTime;
                 Debug.Log("Player " + playerTurn + "'s turn");
 
-                //Logic for turn timer
-                if (timeSpent > turnTimer)
-                {
-                    if (playerTurn >= 4)
-                    {
-                        playerTurn = 1;
-                    } else
-                    {
-                        playerTurn = playerTurn + 1;
-                    }
-                    timeSpent = 0;
-                    return;
-                }
+                //Sets player back to one if over 4
+
 
                 //Logic for disabling/enabling player action and AI scripts
-                /**NOT IMPLEMENTED YET
-                 * 
-                 * 
-                 * 
-                 */
 
                 //End Gameplay State Logic
 
@@ -190,6 +183,17 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void NextTurn()
+    {
+        playerTurn++;
+        board.GetComponent<DrawArea>().GenerateAnimalCardSlots();
+        if (playerTurn > 4)
+        {
+            playerTurn = 1;
+
+        }
+    }
+
     #region Scene Management
 
     //Call to change the scene using the scene name
@@ -253,6 +257,16 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Entering Gameplay State");
         playerTurn = 1;
+        board = Instantiate(boardPrefab);
+        player = Instantiate(playerPrefab);
+        player.name = "Player 1";
+        for (int i = 0; i < 3; i++)
+        {
+            AI[i] = Instantiate(AIPrefab);
+            AI[i].name = "AI " + (i + 1) + " / Player " + (i + 2) ;
+            AI[i].GetComponent<AIScript>().playerNumber = i + 2;
+            //IMPLEMENT LOGIC FOR DIFFERENT POSITIONS PER AI (different sides of the board)
+        }
     }
     private void EnterResultsState()
     {

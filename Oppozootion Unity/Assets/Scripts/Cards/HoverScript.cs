@@ -7,18 +7,21 @@
  * 
  * Description: Controls the halo when a card is hovered
 ****/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HoverScript : MonoBehaviour
 {
-    [HideInInspector]
-    public GameObject thisCubeSlot;
-    [HideInInspector]
-    public GameObject HoverSpot;
+    [HideInInspector] public GameObject thisCubeSlot;
+    [HideInInspector] public GameObject HoverSpot;
     [HideInInspector]
     private bool hover;
+
+    private GameManager GM;
+
+    private void Awake()
+    {
+        GM = GameManager.GM;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +29,6 @@ public class HoverScript : MonoBehaviour
         thisCubeSlot = this.gameObject;
         HoverSpot = thisCubeSlot.transform.Find("HaloHolder").gameObject;
         HoverSpot.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnMouseEnter()
@@ -46,11 +43,25 @@ public class HoverScript : MonoBehaviour
         hover = false;
     }
 
-    private void OnMouseDown()
+    private void OnMouseDown()  
     {
-        if (hover)
+        if (hover && GM.playerTurn == 1)
         {
-            GameObject.Find("Player1").GetComponent<Inventory>().AddCard(this.gameObject);
+            GM.player.GetComponent<PlayerScript>().cardsTakenByPlayer += 1;
+            TakeCard(GM.player);
         }
+    }
+
+    public void TakeCard(GameObject source)
+    {
+        if (this.gameObject.GetComponent<CardData>())
+        {
+            source.GetComponent<Inventory>().AddCard(this.gameObject.GetComponent<CardData>().cardData);
+        }
+        else
+        {
+            source.GetComponent<Inventory>().AddBundle(this.gameObject);
+        }
+        Destroy(this.gameObject);
     }
 }
