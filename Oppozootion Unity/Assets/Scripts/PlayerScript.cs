@@ -22,11 +22,19 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector] public float BundleAreaHeight = 5f;
 
     [HideInInspector] public GameObject thisGO;
+    public int cardsTakenByPlayer = 0;
+
+    private GameManager GM;
 
 
     //PlayerCardArea is 5 long and 2.5 wide for internal coords of (5,2.5) to (-5,-2.5)
     //AnimalCardArea is 7.5 long and 2.5 wide for internal coords of (5,2.5) to (-2.5,-2.5)
     //BundleCardArea is 2.5 long and 2.5 wide for internal coords of (-2.5,2.5) to (-5,-2.5)
+
+    private void Awake()
+    {
+        GM = GameManager.GM;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -39,13 +47,18 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (cardsTakenByPlayer == 2)
+        {
+            cardsTakenByPlayer = 0;
+            GM.NextTurn();
+        }
         UpdateAnimalCards();
         UpdateBundleCards();
     }
 
     public void addAnimalCard(GameObject obj)
     {
-        obj.transform.parent = GameObject.Find("Player1").transform;
+        obj.transform.parent = GM.player.transform;
         AnimalCards.Add(obj);
     }
     public void addBundleCard(GameObject obj)
