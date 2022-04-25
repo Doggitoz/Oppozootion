@@ -17,10 +17,11 @@ public class DrawArea : MonoBehaviour
     public int numberOfAnimalCards=0;
     public GameObject AnimalcardPrefab;
     public List<Cards> AnimalCards;
+    public GameObject BundleCardPrefab;
 
 
     [HideInInspector] public GameObject[] AnimalcardSlots;
-    [HideInInspector] public GameObject[] CurrentBoardCards;
+     public GameObject[] CurrentBoardCards;
     [HideInInspector] public GameObject[] BoardSlots = new GameObject[8];
     
     
@@ -33,6 +34,7 @@ public class DrawArea : MonoBehaviour
         AnimalcardSlots = new GameObject[numberOfAnimalCards];
         CurrentBoardCards = new GameObject[numberOfAnimalCards];
         GenerateAnimalCardSlots();
+        GenerateBundleStack();
     }
 
     public void GenerateAnimalCardSlots()
@@ -73,11 +75,29 @@ public class DrawArea : MonoBehaviour
          */
     }
 
+    public void GenerateBundleStack()
+    {
+        GameObject BundleStack = Instantiate(BundleCardPrefab);
+        BundleStack.transform.position = new Vector3(0, 0, -3f);
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void RemoveCardFromBoard(GameObject card)
+    {
+        for (int i = 0; i < numberOfAnimalCards; i++)
+        {
+            Debug.Log(CurrentBoardCards[i] + "the card: " + card);
+            if (CurrentBoardCards[i] == card)
+            {
+                CurrentBoardCards[i] = null;
+            }
+        }
     }
 
     public void fillCards()

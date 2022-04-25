@@ -57,11 +57,12 @@ public class HoverScript : MonoBehaviour
         if (this.gameObject.GetComponent<CardData>())
         {
             source.GetComponent<Inventory>().AddCard(this.gameObject);
+            GM.board.GetComponent<DrawArea>().RemoveCardFromBoard(this.gameObject);
         }
         else
         {
             source.GetComponent<Inventory>().AddBundle(this.gameObject);
         }
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 }
