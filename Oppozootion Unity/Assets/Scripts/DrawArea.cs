@@ -91,8 +91,7 @@ public class DrawArea : MonoBehaviour
     public void RemoveCardFromBoard(GameObject card)
     {
         for (int i = 0; i < numberOfAnimalCards; i++)
-        {
-            Debug.Log(CurrentBoardCards[i] + "the card: " + card);
+        {   
             if (CurrentBoardCards[i] == card)
             {
                 CurrentBoardCards[i] = null;

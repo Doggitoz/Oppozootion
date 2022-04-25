@@ -50,7 +50,14 @@ public class Inventory : MonoBehaviour
             else
             {
                 cardInventory[i] = obj; //add the card into this index of the array
-                gm.player.GetComponent<PlayerScript>().addAnimalCard(obj);
+                if (transform.gameObject == gm.player)
+                {
+                    gm.player.GetComponent<PlayerScript>().addAnimalCard(obj);
+                }
+                else
+                {
+                    obj.transform.position = new Vector3(0, -100, 0);
+                } 
                 return;
             }
 
