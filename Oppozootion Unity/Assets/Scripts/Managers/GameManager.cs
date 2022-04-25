@@ -74,10 +74,7 @@ public class GameManager : MonoBehaviour
     private string gameState;
     public int playerTurn;
 
-    private void Awake()
-    {
-        CheckGameManagerIsInScene();
-    }
+  
 
     private void Start()
     {
