@@ -48,7 +48,12 @@ public class HoverScript : MonoBehaviour
     {
         if (hover && GM.playerTurn == 1)
         {
-            if (inInventory)
+            if (inInventory && this.gameObject.CompareTag("Bundle"))
+            {
+                this.gameObject.GetComponent<BundleCards>().CompleteBundle();
+                return;
+            }
+            else if(inInventory && this.gameObject.CompareTag("Card"))
             {
                 GM.player.GetComponent<Inventory>().RemoveCard(this.gameObject);
                 Destroy(this.gameObject);
@@ -63,8 +68,10 @@ public class HoverScript : MonoBehaviour
             }
             else
             {
+                inInventory = true;
                 TakeBundle(GM.player);
                 GM.board.GetComponent<DrawArea>().bundleTaken = true;
+                GM.NextTurn();
             }
         }
     }

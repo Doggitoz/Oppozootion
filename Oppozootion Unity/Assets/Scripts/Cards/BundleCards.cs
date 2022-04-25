@@ -32,7 +32,8 @@ public class BundleCards : MonoBehaviour
             Debug.LogWarning("Scriptable Objects List not found");
             return;
         }
-        for (int i = 0; i < Random.Range(2, 4); i++)
+        int randomIndex = Random.Range(2, 4);
+        for (int i = 0; i < randomIndex; i++)
         {
             pointReward += 1;
             int randomAnimalIndex = Random.Range(0, 8);
@@ -73,8 +74,8 @@ public class BundleCards : MonoBehaviour
     }
 
     //Potentially make a function that completed all animals at once instead of one at a time. This will need access to player inventory to function. Add later
-    private void CompleteBundle()
+    public void CompleteBundle()
     {
-
+        Debug.Log("Name: " + this.transform.parent.name);
     }
 }

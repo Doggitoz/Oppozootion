@@ -58,7 +58,7 @@ public class AIScript : MonoBehaviour
 
                     int randomIndex = Random.Range(0, gm.board.GetComponent<DrawArea>().CurrentBoardCards.Length);
                     GameObject currentCard = gm.board.GetComponent<DrawArea>().CurrentBoardCards[randomIndex];
-                    this.gameObject.GetComponent<Inventory>().AddCard(Object.Instantiate(currentCard));
+                    currentCard.GetComponent<HoverScript>().TakeCard(this.gameObject);
                     numAnimalCards++;
 
                     if (numAnimalCards == 7)
@@ -74,7 +74,7 @@ public class AIScript : MonoBehaviour
                     }
 
                     currentCard = gm.board.GetComponent<DrawArea>().CurrentBoardCards[randomIndex2];
-                    this.gameObject.GetComponent<Inventory>().AddCard(Object.Instantiate(currentCard));
+                    currentCard.GetComponent<HoverScript>().TakeCard(this.gameObject);
 
 
                 }

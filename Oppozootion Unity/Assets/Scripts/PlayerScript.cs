@@ -23,6 +23,7 @@ public class PlayerScript : MonoBehaviour
 
     [HideInInspector] public GameObject thisGO;
     public int cardsTakenByPlayer = 0;
+    public int playerNumber = 1;
 
     private GameManager GM;
 
@@ -59,12 +60,29 @@ public class PlayerScript : MonoBehaviour
     public void addAnimalCard(GameObject obj)
     {
         obj.transform.parent = GM.player.transform;
+        for(int i = 0; i < AnimalCards.Count; i++)
+        {
+            if (AnimalCards[i] == null)
+            {
+                AnimalCards[i] = obj;
+                return;
+            }
+        }
         AnimalCards.Add(obj);
     }
     public void addBundleCard(GameObject obj)
     {
         obj.transform.parent = GM.player.transform;
+        for (int i = 0; i < BundleCards.Count; i++)
+        {
+            if (BundleCards[i] == null)
+            {
+                BundleCards[i] = obj;
+                return;
+            }
+        }
         BundleCards.Add(obj);
+
     }
 
     private void UpdateAnimalCards()
@@ -89,6 +107,10 @@ public class PlayerScript : MonoBehaviour
             if (i % 2 == 0)
             {
                 currentspacing += cardSpacing;
+            }
+            if (AnimalCards[i] == null)
+            {
+                continue;
             }
             AnimalCards[i].transform.localPosition = new Vector3((5f) - currentspacing, 0, ((i % 2) * 2.5f - 1.25f));
         }
