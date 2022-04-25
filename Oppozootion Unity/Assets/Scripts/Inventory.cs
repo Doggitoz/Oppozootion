@@ -2,8 +2,8 @@
  * Created by: Bobby Ouyang
  * Date Created: April 20, 2022
  * 
- * Last Edited by: Bobby Ouyang 
- * Last Edited: April 20, 2022
+ * Last Edited by: Coleton Wheeler
+ * Last Edited: April 24, 2022
  * 
  * Description: Inventory system
 ****/
@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
     }
 
 
-    void AddCard(Cards card) //add a card to array
+    public void AddCard(Cards card) //add a card to array
     {
         for (int i = 0; i < maxCardNumber; i++)
         {
@@ -48,7 +48,7 @@ public class Inventory : MonoBehaviour
 
     }
 
-    void AddBundle(GameObject obj) //add a bundle card to array
+    public void AddBundle(GameObject obj) //add a bundle card to array
     {
 
         for (int i = 0; i < maxBundleNumber; i++)
@@ -64,24 +64,13 @@ public class Inventory : MonoBehaviour
 
     }
 
-    void RemoveCard(int pos) //remove one card based on the index of the card in the array
+    public void RemoveCard(int pos) //remove one card based on the index of the card in the array
     {
         cardInventory[pos] = null;
     }
-    void RemoveCard(int pos1, int pos2) //remove two cards based on the index of the card in the array
-    {
-        cardInventory[pos1] = null;
-        cardInventory[pos2] = null;
-    }
-    void RemoveCard(int pos1, int pos2, int pos3) //remove three cards based on the index of the card in the array
-    {
-        cardInventory[pos1] = null;
-        cardInventory[pos2] = null;
-        cardInventory[pos3] = null;
-    }
 
-    void RemoveCard(string str) // remove card by interating through the array and find the card with the corresponding name
-                                // [first letter of the animal name MUST be CAPITALIZED]
+    public void RemoveCard(string str) // remove card by interating through the array and find the card with the corresponding name
+                                       // [first letter of the animal name MUST be CAPITALIZED]
     {
         for (int i = 0; i < maxCardNumber; i++)
         {
