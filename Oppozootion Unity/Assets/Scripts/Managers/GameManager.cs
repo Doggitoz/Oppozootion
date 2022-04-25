@@ -171,6 +171,7 @@ public class GameManager : MonoBehaviour
     {
         playerTurn = playerTurn + 1;
         timeSpent = 0;
+        board.GetComponent<DrawArea>().fillCards();
     }
 
     public void StartGame()

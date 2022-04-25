@@ -85,11 +85,11 @@ public class AIScript : MonoBehaviour
                 numBundleCards++;
             }
         }
-        foreach (Cards card in transform.GetComponent<Inventory>().cardInventory)
+        foreach (GameObject card in transform.GetComponent<Inventory>().cardInventory)
         {
             if (card != null)
             {
-                numAnimalCards++;
+               numAnimalCards++;
             }
         }
     }

@@ -15,6 +15,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
 
+
     [SerializeField]
     public int maxCardNumber = 7;
     public int maxBundleNumber = 3;
@@ -22,6 +23,12 @@ public class Inventory : MonoBehaviour
     public GameObject[] cardInventory;
     public GameObject[] bundleInvtory;
 
+    private GameManager gm;
+
+    private void Awake()
+    {
+        gm = GameManager.GM;
+    }
 
     // Start is called before the first frame update
     void Start()

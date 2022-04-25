@@ -56,7 +56,7 @@ public class HoverScript : MonoBehaviour
     {
         if (this.gameObject.GetComponent<CardData>())
         {
-            source.GetComponent<Inventory>().AddCard(this.gameObject.GetComponent<CardData>().cardData);
+            source.GetComponent<Inventory>().AddCard(this.gameObject);
         }
         else
         {
