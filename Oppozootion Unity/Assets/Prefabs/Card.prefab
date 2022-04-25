@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7706480034633647121}
   - component: {fileID: 7279862070326646565}
   - component: {fileID: 8570799140021944491}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: AnimalName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6195443256102082488}
   - component: {fileID: 8801262755463338323}
   - component: {fileID: 5920076133809580042}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CardBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3202958594414379489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.625, y: 0, z: 0}
+  m_LocalPosition: {x: 2.5, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 0.1, z: 2}
   m_Children:
   - {fileID: 5773880590932323987}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 8466778997473364154}
   - component: {fileID: 3331031995825584182}
   - component: {fileID: 7747365997623959297}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CardUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 6906699609525944308}
   - component: {fileID: 755430083084959949}
   - component: {fileID: 7571603468475207476}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: AnimalImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

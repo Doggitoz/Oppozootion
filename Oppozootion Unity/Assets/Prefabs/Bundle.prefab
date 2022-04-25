@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 98891946125990384}
   - component: {fileID: 5488789539068440956}
   - component: {fileID: 4072598094425156506}
-  - component: {fileID: 5559454235230377090}
   - component: {fileID: 2137171866064515077}
   - component: {fileID: 4677080115497270835}
   m_Layer: 0
@@ -104,28 +103,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5559454235230377090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3202958594414379489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed5e12ff61fef5d40bdf21e20f4f0986, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardList:
-  - {fileID: 11400000, guid: 2913651008e6445618db1b777962917d, type: 2}
-  - {fileID: 11400000, guid: 7e13f58bf23eb4cd5bfa3aa23f464cda, type: 2}
-  - {fileID: 11400000, guid: fcd0b4f5f75954fbea0322244fa43de0, type: 2}
-  - {fileID: 11400000, guid: 3c98f5a6d96a24bba9594dbb16ca431c, type: 2}
-  - {fileID: 11400000, guid: 4fc6bc1cf42ec4355a36d87807a39e4f, type: 2}
-  - {fileID: 11400000, guid: 664618b34792f450f9021051fe0efe02, type: 2}
-  - {fileID: 11400000, guid: 7cd66fe9cb60d437a9418c8aca0a13d6, type: 2}
-  - {fileID: 11400000, guid: 89f088d0b53f54f4ab55f792b6183397, type: 2}
-  playerNumber: 0
 --- !u!114 &2137171866064515077
 MonoBehaviour:
   m_ObjectHideFlags: 0

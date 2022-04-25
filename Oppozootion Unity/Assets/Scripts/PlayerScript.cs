@@ -81,7 +81,7 @@ public class PlayerScript : MonoBehaviour
 
         float currentspacing = 0f;
         //float AnimalCardHeightSpacing;
-        
+
 
         for (int i = 0; i < AnimalCards.Count; i++)
         {
@@ -89,7 +89,7 @@ public class PlayerScript : MonoBehaviour
             {
                 currentspacing += cardSpacing;
             }
-            AnimalCards[i].transform.localPosition = new Vector3((5f) - currentspacing, 0, ((i % 2)*2.5f-1.25f));
+            AnimalCards[i].transform.localPosition = new Vector3((5f) - currentspacing, 0, ((i % 2) * 2.5f - 1.25f));
         }
     }
     private void UpdateBundleCards()

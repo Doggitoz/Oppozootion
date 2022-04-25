@@ -14,23 +14,23 @@ using UnityEngine;
 public class DrawArea : MonoBehaviour
 {
     //Variables
-    public int numberOfAnimalCards=0;
+    public int numberOfAnimalCards = 0;
     public GameObject AnimalcardPrefab;
     public List<Cards> AnimalCards;
     public GameObject BundleCardPrefab;
 
 
     [HideInInspector] public GameObject[] AnimalcardSlots;
-     public GameObject[] CurrentBoardCards;
+    public GameObject[] CurrentBoardCards;
     [HideInInspector] public GameObject[] BoardSlots = new GameObject[8];
-    
-    
+
+
     //Draw area exists between the points (-5,-5) and (5,5) with (0,0) being the center
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         AnimalcardSlots = new GameObject[numberOfAnimalCards];
         CurrentBoardCards = new GameObject[numberOfAnimalCards];
         GenerateAnimalCardSlots();
@@ -85,13 +85,13 @@ public class DrawArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void RemoveCardFromBoard(GameObject card)
     {
         for (int i = 0; i < numberOfAnimalCards; i++)
-        {
+        {   
             if (CurrentBoardCards[i] == card)
             {
                 CurrentBoardCards[i] = null;
@@ -101,9 +101,9 @@ public class DrawArea : MonoBehaviour
 
     public void fillCards()
     {
-        for(int i = 0; i < numberOfAnimalCards; i++)
+        for (int i = 0; i < numberOfAnimalCards; i++)
         {
-            if(CurrentBoardCards[i]==null)
+            if (CurrentBoardCards[i] == null)
             {
                 CurrentBoardCards[i] = DrawCard(AnimalcardSlots[i].transform.position);
             }

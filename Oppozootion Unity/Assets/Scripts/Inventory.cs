@@ -50,7 +50,14 @@ public class Inventory : MonoBehaviour
             else
             {
                 cardInventory[i] = obj; //add the card into this index of the array
-                gm.player.GetComponent<PlayerScript>().addAnimalCard(obj);
+                if (transform.gameObject == gm.player)
+                {
+                    gm.player.GetComponent<PlayerScript>().addAnimalCard(obj);
+                }
+                else
+                {
+                    obj.transform.position = new Vector3(0, -100, 0);
+                } 
                 return;
             }
 
@@ -80,7 +87,7 @@ public class Inventory : MonoBehaviour
     }
 
     public void RemoveCard(string str) // remove card by interating through the array and find the card with the corresponding name
-                                // [first letter of the animal name MUST be CAPITALIZED]
+                                       // [first letter of the animal name MUST be CAPITALIZED]
     {
         for (int i = 0; i < maxCardNumber; i++)
         {

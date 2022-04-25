@@ -1,3 +1,4 @@
+
 /****
  * Created by: Coleton Wheeler
  * Date Created: April 24, 2022
@@ -32,7 +33,7 @@ public class AIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -47,22 +48,21 @@ public class AIScript : MonoBehaviour
                 UpdateInventoryStats();
                 if (random > 80 && numBundleCards < 3)
                 {
-                    Debug.Log("Player " + playerNumber + " took a bundle card");
+                    Debug.Log("Player " + playerNumber + " took a bundle card " + Time.time);
                     numBundleCards++;
                     //SCRIPT TO TAKE A BUNDLE CARD ONCE IMPLEMENTED
-                } 
+                }
                 else if (numAnimalCards < 7)
                 {
-                    Debug.Log("Player " + playerNumber + " took an animal card");
-                    int randomIndex = Random.Range(0, 8);
-                    //GameObject randomCardFromBoard = gm.board.GetComponent<DrawArea>().BoardSlots[randomIndex];
-                    Debug.LogWarning("AI Taking Card not implemented yet");
-                    //randomCardFromBoard.GetComponent<HoverScript>().TakeCard(this.gameObject);
+                    Debug.Log("Player " + playerNumber + " took an animal card " + Time.time);
 
-                } 
+                    int randomIndex = Random.Range(0, gm.board.GetComponent<DrawArea>().CurrentBoardCards.Length);
+                    
+
+                }
                 else
                 {
-                    Debug.Log("Player " + playerNumber + " discarded an animal card");
+                    Debug.Log("Player " + playerNumber + " discarded an animal card " + Time.time);
                     transform.GetComponent<Inventory>().RemoveCard(Random.Range(0, 7));
                 }
 
@@ -78,6 +78,8 @@ public class AIScript : MonoBehaviour
 
     void UpdateInventoryStats()
     {
+        numAnimalCards = 0;
+        numBundleCards = 0;
         foreach (GameObject bundle in transform.GetComponent<Inventory>().bundleInvtory)
         {
             if (bundle != null)
@@ -89,7 +91,7 @@ public class AIScript : MonoBehaviour
         {
             if (card != null)
             {
-               numAnimalCards++;
+                numAnimalCards++;
             }
         }
     }

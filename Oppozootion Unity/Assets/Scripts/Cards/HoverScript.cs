@@ -47,22 +47,23 @@ public class HoverScript : MonoBehaviour
     {
         if (hover && GM.playerTurn == 1)
         {
-            GM.player.GetComponent<PlayerScript>().cardsTakenByPlayer += 1;
-            TakeCard(GM.player);
+            if (this.gameObject.GetComponent<CardData>())
+            {
+                GM.player.GetComponent<PlayerScript>().cardsTakenByPlayer += 1;
+                TakeCard(GM.player);
+            }
         }
     }
 
     public void TakeCard(GameObject source)
     {
-        if (this.gameObject.GetComponent<CardData>())
-        {
-            source.GetComponent<Inventory>().AddCard(this.gameObject);
-            GM.board.GetComponent<DrawArea>().RemoveCardFromBoard(this.gameObject);
-        }
-        else
-        {
-            source.GetComponent<Inventory>().AddBundle(this.gameObject);
-        }
-        //Destroy(this.gameObject);
+        Debug.LogWarning(source);
+        source.GetComponent<Inventory>().AddCard(this.gameObject);
+        GM.board.GetComponent<DrawArea>().RemoveCardFromBoard(this.gameObject);
+    }
+
+    public void TakeBundle(GameObject source)
+    {
+        source.GetComponent<Inventory>().AddBundle(this.gameObject);
     }
 }
