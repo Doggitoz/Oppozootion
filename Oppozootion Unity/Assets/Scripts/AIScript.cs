@@ -57,7 +57,25 @@ public class AIScript : MonoBehaviour
                     Debug.Log("Player " + playerNumber + " took an animal card " + Time.time);
 
                     int randomIndex = Random.Range(0, gm.board.GetComponent<DrawArea>().CurrentBoardCards.Length);
-                    
+                    GameObject currentCard = gm.board.GetComponent<DrawArea>().CurrentBoardCards[randomIndex];
+                    this.gameObject.GetComponent<Inventory>().AddCard(Object.Instantiate(currentCard));
+                    numAnimalCards++;
+
+                    if (numAnimalCards == 7)
+                    {
+                        gm.NextTurn();
+                        return;
+                    }
+
+                    int randomIndex2 = randomIndex;
+
+                    while ((randomIndex2 = Random.Range(0, 8)) == randomIndex) {
+                        
+                    }
+
+                    currentCard = gm.board.GetComponent<DrawArea>().CurrentBoardCards[randomIndex2];
+                    this.gameObject.GetComponent<Inventory>().AddCard(Object.Instantiate(currentCard));
+
 
                 }
                 else

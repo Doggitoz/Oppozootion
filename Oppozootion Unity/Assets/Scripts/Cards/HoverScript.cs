@@ -15,6 +15,7 @@ public class HoverScript : MonoBehaviour
     [HideInInspector] public GameObject HoverSpot;
     [HideInInspector]
     private bool hover;
+    private bool inInventory = false;
 
     private GameManager GM;
 
@@ -47,10 +48,22 @@ public class HoverScript : MonoBehaviour
     {
         if (hover && GM.playerTurn == 1)
         {
+            if (inInventory)
+            {
+                GM.player.GetComponent<Inventory>().RemoveCard(this.gameObject);
+                Destroy(this.gameObject);
+                GM.NextTurn();
+                return;
+            }
             if (this.gameObject.GetComponent<CardData>())
             {
+                inInventory = true;
                 GM.player.GetComponent<PlayerScript>().cardsTakenByPlayer += 1;
                 TakeCard(GM.player);
+            }
+            else
+            {
+                TakeBundle(GM.player);
             }
         }
     }
