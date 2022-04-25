@@ -47,22 +47,31 @@ public class AIScript : MonoBehaviour
                 UpdateInventoryStats();
                 if (random > 80 && numBundleCards < 3)
                 {
-                    Debug.Log("Player " + playerNumber + " took a bundle card");
+                    Debug.Log("Player " + playerNumber + " took a bundle card " + Time.time);
                     numBundleCards++;
                     //SCRIPT TO TAKE A BUNDLE CARD ONCE IMPLEMENTED
                 } 
                 else if (numAnimalCards < 7)
                 {
-                    Debug.Log("Player " + playerNumber + " took an animal card");
-                    int randomIndex = Random.Range(0, 8);
-                    //GameObject randomCardFromBoard = gm.board.GetComponent<DrawArea>().BoardSlots[randomIndex];
-                    Debug.LogWarning("AI Taking Card not implemented yet");
-                    //randomCardFromBoard.GetComponent<HoverScript>().TakeCard(this.gameObject);
+                    Debug.Log("Player " + playerNumber + " took an animal card " + Time.time);
+                    
+                    int randomIndex = Random.Range(0, gm.board.GetComponent<DrawArea>().CurrentBoardCards.Length);
+                    GameObject randomCardFromBoard = gm.board.GetComponent<DrawArea>().CurrentBoardCards[randomIndex];
+                    randomCardFromBoard.GetComponent<HoverScript>().TakeCard(this.gameObject);
+
+                    int randomIndex2 = Random.Range(0, gm.board.GetComponent<DrawArea>().CurrentBoardCards.Length);
+                    while(randomIndex2 == randomIndex)
+                    {
+                        randomIndex2 = Random.Range(0, gm.board.GetComponent<DrawArea>().CurrentBoardCards.Length);
+                    }
+
+                    randomCardFromBoard = gm.board.GetComponent<DrawArea>().CurrentBoardCards[randomIndex];
+                    randomCardFromBoard.GetComponent<HoverScript>().TakeCard(this.gameObject);
 
                 } 
                 else
                 {
-                    Debug.Log("Player " + playerNumber + " discarded an animal card");
+                    Debug.Log("Player " + playerNumber + " discarded an animal card " + Time.time);
                     transform.GetComponent<Inventory>().RemoveCard(Random.Range(0, 7));
                 }
 
