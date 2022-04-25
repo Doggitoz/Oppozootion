@@ -64,6 +64,7 @@ public class HoverScript : MonoBehaviour
             else
             {
                 TakeBundle(GM.player);
+                GM.board.GetComponent<DrawArea>().bundleTaken = true;
             }
         }
     }
