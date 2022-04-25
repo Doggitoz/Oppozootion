@@ -158,7 +158,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5773880590932323987}
   - component: {fileID: 8492409442633151442}
-  - component: {fileID: 2293251414537879011}
   m_Layer: 0
   m_Name: HaloHolder
   m_TagString: Untagged
@@ -192,17 +191,3 @@ Halo:
     serializedVersion: 2
     rgba: 4278250232
   m_Size: 1
---- !u!114 &2293251414537879011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4990526703214600191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 598b5037d43b2024e9242845e702a60a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisCubeSlot: {fileID: 0}
-  HoverSpot: {fileID: 0}
