@@ -63,6 +63,7 @@ public class PlayerScript : MonoBehaviour
     }
     public void addBundleCard(GameObject obj)
     {
+        obj.transform.parent = GM.player.transform;
         BundleCards.Add(obj);
     }
 
@@ -94,10 +95,12 @@ public class PlayerScript : MonoBehaviour
     }
     private void UpdateBundleCards()
     {
-        float cardSpacing = BundleAreaHeight / ((BundleCards.Count / 2) + 1);
+        float cardSpacing = BundleAreaHeight / ((BundleCards.Count) + 1);
+        float currentSpacing = 0f;
         for (int i = 0; i < BundleCards.Count; i++)
         {
-            BundleCards[i].transform.localPosition = new Vector3((-2.5f) - (2.5f / 2f), 0, 2.5f + cardSpacing); ;
+            currentSpacing += cardSpacing;
+            BundleCards[i].transform.localPosition = new Vector3((-2.5f) - (2.5f / 2f), 0, -2.5f + currentSpacing);
         }
     }
 }

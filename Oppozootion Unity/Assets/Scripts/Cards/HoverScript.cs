@@ -52,6 +52,11 @@ public class HoverScript : MonoBehaviour
                 GM.player.GetComponent<PlayerScript>().cardsTakenByPlayer += 1;
                 TakeCard(GM.player);
             }
+            else
+            {
+                TakeBundle(GM.player);
+                GM.board.GetComponent<DrawArea>().bundleTaken = true;
+            }
         }
     }
 
