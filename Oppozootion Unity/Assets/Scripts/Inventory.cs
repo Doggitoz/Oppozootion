@@ -76,6 +76,14 @@ public class Inventory : MonoBehaviour
             else
             {
                 bundleInvtory[i] = obj; //add the bundle card into this index of the array
+                if (transform.gameObject == gm.player)
+                {
+                    gm.player.GetComponent<PlayerScript>().addBundleCard(obj);
+                }
+                else
+                {
+                    obj.transform.position = new Vector3(0, -100, 0);
+                }
                 return;
             }
         }

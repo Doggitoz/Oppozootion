@@ -23,6 +23,7 @@ public class DrawArea : MonoBehaviour
     [HideInInspector] public GameObject[] AnimalcardSlots;
     public GameObject[] CurrentBoardCards;
     [HideInInspector] public GameObject[] BoardSlots = new GameObject[8];
+    [HideInInspector] public bool bundleTaken = false;
 
 
     //Draw area exists between the points (-5,-5) and (5,5) with (0,0) being the center
@@ -79,6 +80,7 @@ public class DrawArea : MonoBehaviour
     {
         GameObject BundleStack = Instantiate(BundleCardPrefab);
         BundleStack.transform.position = new Vector3(0, 0, -3f);
+        bundleTaken = false;
     }
 
 
@@ -107,6 +109,10 @@ public class DrawArea : MonoBehaviour
             {
                 CurrentBoardCards[i] = DrawCard(AnimalcardSlots[i].transform.position);
             }
+        }
+        if (bundleTaken == true)
+        {
+            GenerateBundleStack();
         }
     }
 
