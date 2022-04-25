@@ -81,7 +81,7 @@ public class Inventory : MonoBehaviour
     }
 
     public void RemoveCard(string str) // remove card by interating through the array and find the card with the corresponding name
-                                // [first letter of the animal name MUST be CAPITALIZED]
+                                       // [first letter of the animal name MUST be CAPITALIZED]
     {
         for (int i = 0; i < maxCardNumber; i++)
         {
