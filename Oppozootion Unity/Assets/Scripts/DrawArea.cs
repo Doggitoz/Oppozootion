@@ -92,7 +92,6 @@ public class DrawArea : MonoBehaviour
     {
         for (int i = 0; i < numberOfAnimalCards; i++)
         {
-            Debug.Log(CurrentBoardCards[i] + "the card: " + card);
             if (CurrentBoardCards[i] == card)
             {
                 CurrentBoardCards[i] = null;
