@@ -3,7 +3,7 @@
  * Date Created: April 18,2022
  * 
  * Last Edited by: Coleton Wheeler
- * Last Edited: April 22, 2022
+ * Last Edited: April 24, 2022
  * 
  * Description: Handles generating new cards to the draw area
 ****/
@@ -17,9 +17,12 @@ public class DrawArea : MonoBehaviour
     public int numberOfAnimalCards=0;
     public GameObject AnimalcardPrefab;
     public List<Cards> AnimalCards;
+    public GameObject BundleCardPrefab;
 
 
-    [HideInInspector]public GameObject[] AnimalcardSlots;
+    [HideInInspector] public GameObject[] AnimalcardSlots;
+     public GameObject[] CurrentBoardCards;
+    [HideInInspector] public GameObject[] BoardSlots = new GameObject[8];
     
     
     //Draw area exists between the points (-5,-5) and (5,5) with (0,0) being the center
@@ -29,10 +32,12 @@ public class DrawArea : MonoBehaviour
     {
         
         AnimalcardSlots = new GameObject[numberOfAnimalCards];
+        CurrentBoardCards = new GameObject[numberOfAnimalCards];
         GenerateAnimalCardSlots();
+        GenerateBundleStack();
     }
 
-    private void GenerateAnimalCardSlots()
+    public void GenerateAnimalCardSlots()
     {
         float cardSpacing = 10f / ((numberOfAnimalCards / 2) + 1);
         if (numberOfAnimalCards % 2 == 1)
@@ -50,15 +55,30 @@ public class DrawArea : MonoBehaviour
 
         for (int i = 0; i < numberOfAnimalCards; i++)
         {
-            GameObject newSlot = new GameObject();
-            if (i % 2 == 0)
+            if (AnimalcardSlots[i] == null)
             {
-                currentspacing += cardSpacing;
+                GameObject newSlot = new GameObject();
+                if (i % 2 == 0)
+                {
+                    currentspacing += cardSpacing;
+                }
+                newSlot.transform.position = new Vector3((-5f) + currentspacing, 0, ((i % 2) * 3));
+                AnimalcardSlots[i] = newSlot;
             }
-            newSlot.transform.position = new Vector3((-5f) + currentspacing, 0, ((i % 2) * 3) );
-            AnimalcardSlots[i] = newSlot;
         }
         Invoke("fillCards", 1f);
+
+        /*** 
+         * WILL NEED SCRIPTS TO INSTANTIATE BUNDLE CARDS
+         * 
+         * 
+         */
+    }
+
+    public void GenerateBundleStack()
+    {
+        GameObject BundleStack = Instantiate(BundleCardPrefab);
+        BundleStack.transform.position = new Vector3(0, 0, -3f);
     }
 
 
@@ -68,18 +88,30 @@ public class DrawArea : MonoBehaviour
         
     }
 
-    public void fillCards()
+    public void RemoveCardFromBoard(GameObject card)
     {
-        for(int i = 0; i < numberOfAnimalCards; i++)
+        for (int i = 0; i < numberOfAnimalCards; i++)
         {
-            if(/*determine how cards are taken from a slot*/true)
+            Debug.Log(CurrentBoardCards[i] + "the card: " + card);
+            if (CurrentBoardCards[i] == card)
             {
-                DrawCard(AnimalcardSlots[i].transform.position);
+                CurrentBoardCards[i] = null;
             }
         }
     }
 
-    private void DrawCard(Vector3 pos)
+    public void fillCards()
+    {
+        for(int i = 0; i < numberOfAnimalCards; i++)
+        {
+            if(CurrentBoardCards[i]==null)
+            {
+                CurrentBoardCards[i] = DrawCard(AnimalcardSlots[i].transform.position);
+            }
+        }
+    }
+
+    private GameObject DrawCard(Vector3 pos)
     {
         GameObject Animalcard = Instantiate(AnimalcardPrefab);
 
@@ -93,5 +125,7 @@ public class DrawArea : MonoBehaviour
         Animalcard.name = newCard.name + " card";
         Animalcard.transform.parent = transform;
         Animalcard.transform.position = pos;
+
+        return Animalcard;
     }
 }

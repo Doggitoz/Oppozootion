@@ -55,7 +55,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 664618b34792f450f9021051fe0efe02, type: 2}
   - {fileID: 11400000, guid: 7cd66fe9cb60d437a9418c8aca0a13d6, type: 2}
   - {fileID: 11400000, guid: 89f088d0b53f54f4ab55f792b6183397, type: 2}
+  BundleCardPrefab: {fileID: 3202958594414379489, guid: 3a7c59291e2fffb48a613c895c534b96, type: 3}
   AnimalcardSlots: []
+  CurrentBoardCards: []
+  BoardSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1222805695325912639
 GameObject:
   m_ObjectHideFlags: 0

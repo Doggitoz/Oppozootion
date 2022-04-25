@@ -50,8 +50,7 @@ public class Inventory : MonoBehaviour
             else
             {
                 cardInventory[i] = obj; //add the card into this index of the array
-                Debug.Log(obj.transform.parent);
-                GameObject.Find("Player1").GetComponent<PlayerScript>().addAnimalCard(obj);
+                gm.player.GetComponent<PlayerScript>().addAnimalCard(obj);
                 return;
             }
 
