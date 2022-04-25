@@ -91,6 +91,11 @@ public class GameManager : MonoBehaviour
         EnterMenuState();
         ChangeGameState("gameplay");
     }
+    private void Awake()
+    {
+        CheckGameManagerIsInScene();
+
+    }
 
     private void Update()
     {
