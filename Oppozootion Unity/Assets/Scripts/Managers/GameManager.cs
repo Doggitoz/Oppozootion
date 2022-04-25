@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        EditorSceneManager.LoadScene("level_00");
+
     }
 
     public void ExitGame()

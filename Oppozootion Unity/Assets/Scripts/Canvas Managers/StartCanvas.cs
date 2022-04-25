@@ -2,8 +2,8 @@
  * Created by: Akram Taghavi-Burrs
  * Date Created: Feb 23, 2022
  * 
- * Last Edited by: NA
- * Last Edited: Feb 23, 2022
+ * Last Edited by: Anupam Terkonda
+ * Last Edited: April 24, 2022
  * 
  * Description: Updates start canvas referecing game manager
 ****/
@@ -28,24 +28,29 @@ public class StartCanvas : MonoBehaviour
 
     private void Start()
     {
-         gm = GameManager.GM; //find the game manager
-        if(gm == null)
+
+
+        //Set the Canvas text from GM reference
+        //Debug.Log(titleTextbox.text);
+        if (gm != null)
         {
-            Debug.LogWarning("gm is null");
-            gm = GameManager.GM;
+            titleTextbox.text = gm.gameTitle;
+    
+            creditsTextbox.text = gm.gameCredits;
+
+            copyrightTextbox.text = gm.copyrightDate;
         }
-         
-         //Set the Canvas text from GM reference
-         titleTextbox.text = gm.gameTitle; 
-         creditsTextbox.text = gm.gameCredits;
-         copyrightTextbox.text = gm.copyrightDate;
 
         canvas = GameObject.Find("Canvas");
+    }
+    public void Awake()
+    {
+        gm = GameManager.GM;
     }
 
 
 
-   public void GameStart()
+    public void GameStart()
     {
         gm.StartGame(); //refenece the StartGame method on the game manager
 
