@@ -20,6 +20,7 @@ public class DrawArea : MonoBehaviour
 
 
     [HideInInspector] public GameObject[] AnimalcardSlots;
+    [HideInInspector] public GameObject[] CurrentBoardCards;
     [HideInInspector] public GameObject[] BoardSlots = new GameObject[8];
     
     
@@ -30,6 +31,7 @@ public class DrawArea : MonoBehaviour
     {
         
         AnimalcardSlots = new GameObject[numberOfAnimalCards];
+        CurrentBoardCards = new GameObject[numberOfAnimalCards];
         GenerateAnimalCardSlots();
     }
 
@@ -82,14 +84,14 @@ public class DrawArea : MonoBehaviour
     {
         for(int i = 0; i < numberOfAnimalCards; i++)
         {
-            if(/*determine how cards are taken from a slot*/true)
+            if(CurrentBoardCards[i]==null)
             {
-                DrawCard(AnimalcardSlots[i].transform.position);
+                CurrentBoardCards[i] = DrawCard(AnimalcardSlots[i].transform.position);
             }
         }
     }
 
-    private void DrawCard(Vector3 pos)
+    private GameObject DrawCard(Vector3 pos)
     {
         GameObject Animalcard = Instantiate(AnimalcardPrefab);
 
@@ -103,5 +105,7 @@ public class DrawArea : MonoBehaviour
         Animalcard.name = newCard.name + " card";
         Animalcard.transform.parent = transform;
         Animalcard.transform.position = pos;
+
+        return Animalcard;
     }
 }
