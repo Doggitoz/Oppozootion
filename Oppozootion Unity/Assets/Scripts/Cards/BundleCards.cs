@@ -19,14 +19,16 @@ public class BundleCards : MonoBehaviour
 
     public string bundleInfo;
     public Text bundleUI;
+    public Text pointsUI;
 
     [Header("Set in Inspector")]
-    public List<ScriptableObject> cardList;
+    public List<Cards> cardList;
     
 
     [HideInInspector]
     public int playerNumber;
-    private List<ScriptableObject> bundleGoals = new List<ScriptableObject>();
+    private List<Cards> bundleGoals = new List<Cards>();
+    GameObject[] cardInventoryClone;
     private int pointReward = 0;
     private GameManager gm;
 
@@ -58,35 +60,94 @@ public class BundleCards : MonoBehaviour
             bundleInfo += item.animalName + "\n";
         }
         bundleUI.text = bundleInfo;
+        pointsUI.text = "Points: " + pointReward;
     }
 
-    public void RemoveAnimal(string animalName)
+    public void removeanimal(string animalname)
     {
-        foreach (ScriptableObject animal in bundleGoals)
-        {
-            if (animal.name == animalName)
-            {
-                Debug.Log("Removing " + animal.name + " from bundle");
-                bundleGoals.Remove(animal);
-                break;
-            }
-        }
+        //foreach (scriptableobject animal in bundlegoals)
+        //{
+        //    if (animal.name == animalname)
+        //    {
+        //        debug.log("removing " + animal.name + " from bundle");
+        //        bundlegoals.remove(animal);
+        //        break;
+        //    }
+        //}
 
-        if (bundleGoals.Count == 0)
-        {
-            Debug.Log("Player " + playerNumber + " completed a bundle");
-            gm.UpdatePlayerScore(playerNumber, pointReward);
+        //if (bundlegoals.count == 0)
+        //{
+        //    debug.log("player " + playernumber + " completed a bundle");
+        //    gm.updateplayerscore(playernumber, pointreward);
 
-            //HANDLE DESTROYING GAMEOBJECT CLEANLY HERE
-            //Need to access player inventory to remove this bundle
-            Destroy(this.transform.parent);
-        }
+        //    //handle destroying gameobject cleanly here
+        //    //need to access player inventory to remove this bundle
+        //    destroy(this.transform.parent);
+        //}
 
     }
+
+    public void ButtonPress()
+    {
+        if (gm.playerTurn == 1)
+        {
+            CompleteBundle();
+        }
+    }
+
 
     //Potentially make a function that completed all animals at once instead of one at a time. This will need access to player inventory to function. Add later
     public void CompleteBundle()
     {
-        Debug.Log("Name: " + this.transform.parent.name);
+        GameObject[] cardInventory = this.transform.parent.GetComponent<Inventory>().cardInventory;
+        cardInventoryClone = cardInventory;
+        List<Cards> bundleClone = bundleGoals;
+
+        //Iterates through each card in the bundle to complete
+        for (int j = 0; j < bundleClone.Count; j++)
+        {
+            //If it cannot find a valid card for this, return the function, skipping completion rewards
+            if (CheckForCard(j) == false)
+            {
+                return;
+            }
+        }
+
+        //Remove each card used in bundle completion
+        foreach (GameObject card in cardInventory)
+        {
+            this.transform.parent.GetComponent<Inventory>().RemoveCard(card);
+        }
+
+        //Update Player Score
+        gm.UpdatePlayerScore(gm.playerTurn, pointReward);
+    }
+
+    bool CheckForCard(int j)
+    {
+        //Iterate through each card in the owners inventory
+        for (int i = 0; i < cardInventoryClone.Length; i++)
+        {
+
+            //If slot is null for some reason, just skip it
+            if (cardInventoryClone[i] == null)
+            {
+                continue;
+            }
+
+            //If the card names are equal, return true
+            if (cardInventoryClone[i].name == bundleGoals[j].animalName + " card")
+            {
+                Debug.Log("BUNDLE spot COMPLETED");
+
+                //This just invalidates my weird workaround. Im checking gameobject name instead of animal name since it wouldnt let me for some reason
+                cardInventoryClone[i].name = "xsdasd";
+                return true;
+            }
+        }
+
+        //If no valid card is found, return false
+        Debug.Log("Invalid Bundle Completion");
+        return false;
     }
 }

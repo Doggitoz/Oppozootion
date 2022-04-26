@@ -33,11 +33,11 @@ public class ScriptableObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < list.cardList.Count; i++)
-        {
-            if (bundleList[0] != null)
-                bundleList[0].GetComponent<BundleCards>().RemoveAnimal(list.cardList[i].name);
-        }
+        //for (int i = 0; i < list.cardList.Count; i++)
+        //{
+        //    if (bundleList[0] != null)
+        //        bundleList[0].GetComponent<BundleCards>().RemoveAnimal(list.cardList[i].name);
+        //}
     }
 
     void ReadList(int num)
