@@ -249,6 +249,19 @@ MonoBehaviour:
   gameCredits: 'Created by: '
   copyrightDate: 2022
   tempHolder: 
+  player: {fileID: 0}
+  AI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  board: {fileID: 0}
+  pointsToWinGame: 20
+  turnTimer: 30
+  timeSpent: 0
+  playerPrefab: {fileID: 1074521758346686895, guid: eb346e52135cef248aa517cace5e6bea, type: 3}
+  AIPrefab: {fileID: 1170628609807420133, guid: 01f8ad35ee25cd840b50c8c32c06087c, type: 3}
+  boardPrefab: {fileID: 1222805695200178092, guid: 0c178769cfe833f468ddcfdec889db6e, type: 3}
+  playerTurn: 0
 --- !u!1 &534656617
 GameObject:
   m_ObjectHideFlags: 0

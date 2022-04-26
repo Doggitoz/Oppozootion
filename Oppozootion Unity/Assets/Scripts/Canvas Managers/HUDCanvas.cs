@@ -44,8 +44,8 @@ public class HUDCanvas : MonoBehaviour
     {
         gm = GameManager.GM; //find the game manager
 
-        maxScore = GameManager.pointsToWinGame; //get the max score from the game manager
-        maxTimeAllowed = GameManager.turnTimer; 
+        maxScore = gm.pointsToWinGame; //get the max score from the game manager
+        maxTimeAllowed = gm.turnTimer; 
         timer = maxTimeAllowed; //set the timer to the max time allowed
 
         SetHUD();
@@ -54,17 +54,7 @@ public class HUDCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer > 0)
-        {
-            timer -= Time.deltaTime; //reduce time by 1 second
-            Debug.Log("Reduced Time");
-        }
-        else
-        {
-            //Automatically move to next player's turn
-            timer = maxTimeAllowed; //set timer back to start
-            Debug.Log("Timer ran out!");
-        }
+        timer = gm.timeSpent;
         GetGameStats();
         SetHUD();
     }//end Update()
@@ -93,7 +83,7 @@ public class HUDCanvas : MonoBehaviour
         if (textboxP3) { textboxP3.text = "Player 3: " + scoreP3; }
         if (textboxP4) { textboxP4.text = "Player 4: " + scoreP4; }
         if (textboxMaxScore) { textboxMaxScore.text = "Max Score: " + maxScore; }
-        if (textboxTimer) { textboxTimer.text = "Time Remaining: " + timer.ToString("0"); } //displays timer rounded to the nearest decimal
+        if (textboxTimer) { textboxTimer.text = "Time Remaining: " + Mathf.Ceil(gm.turnTimer - timer); } //displays timer rounded to the nearest decimal
 
     }//end SetHUD()
 

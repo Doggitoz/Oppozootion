@@ -61,9 +61,9 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, System.Action> startMethods = new Dictionary<string, System.Action>();
 
     [Header("Set in Inspector")]
-    public static int pointsToWinGame = 20;
-    public static float turnTimer = 30f;
-    private static float timeSpent;
+    public int pointsToWinGame = 20;
+    public float turnTimer = 30f;
+    public float timeSpent = 0f;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject playerPrefab;
@@ -115,10 +115,15 @@ public class GameManager : MonoBehaviour
                 //Run Gameplay State Logic
                 Debug.Log("Player " + playerTurn + "'s turn");
 
-                //Sets player back to one if over 4
+                if (playerTurn == 1)
+                {
+                    timeSpent += Time.deltaTime;
 
-
-                //Logic for disabling/enabling player action and AI scripts
+                    if (timeSpent > turnTimer)
+                    {
+                        PlayerActionCompleted();
+                    }
+                }
 
                 //End Gameplay State Logic
 
@@ -128,7 +133,6 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Running Results State");
 
                 //Run Results State Logic
-
 
 
                 //End Results State Logic
@@ -178,7 +182,9 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        ChangeScene("BoardScene");
         gameState = "gameplay";
+        EnterGameplayState();
     }
 
     public void ExitGame()
