@@ -45,15 +45,12 @@ public class GameManager : MonoBehaviour
     public string tempHolder = "";
 
     //Gameplay Variables
-    [HideInInspector]
-    public static int pOneScore;
-    public static int pTwoScore;
-    public static int pThreeScore;
-    public static int pFourScore;
-    public static int[] playerScores =
-    {
-        pOneScore, pTwoScore, pThreeScore, pFourScore
-    };
+    public int pOneScore;
+    public int pTwoScore;
+    public int pThreeScore;
+    public int pFourScore;
+    public string finalMessage;
+
     public GameObject player;
     public GameObject[] AI = new GameObject[3];
     public GameObject board;
@@ -78,16 +75,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //Instantiate
-        //Populate dictionary for start method calling
-        startMethods.Add("menu", EnterMenuState);
-        startMethods.Add("gameplay", EnterGameplayState);
-        startMethods.Add("results", EnterResultsState);
-
         gameState = "menu";
         EnterMenuState();
-        ChangeGameState("gameplay");
+
     }
+
     private void Awake()
     {
         CheckGameManagerIsInScene();
@@ -113,6 +105,23 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Running Gameplay State");
 
                 //Run Gameplay State Logic
+
+                //If it didn't instantiate for some reason
+                if (board == null)
+                {
+                    board = Instantiate(boardPrefab);
+                    player = Instantiate(playerPrefab);
+                    player.name = "Player 1";
+                    for (int i = 0; i < 3; i++)
+                    {
+                        AI[i] = Instantiate(AIPrefab);
+                        AI[i].name = "AI " + (i + 1) + " / Player " + (i + 2);
+                        AI[i].GetComponent<AIScript>().playerNumber = i + 2;
+                        //IMPLEMENT LOGIC FOR DIFFERENT POSITIONS PER AI (different sides of the board)
+                    }
+                }
+
+
                 Debug.Log("Player " + playerTurn + "'s turn");
 
                 if (playerTurn == 1)
@@ -123,6 +132,17 @@ public class GameManager : MonoBehaviour
                     {
                         PlayerActionCompleted();
                     }
+                }
+                else
+                {
+                    timeSpent = 0;
+                }
+
+                if (pOneScore >= pointsToWinGame)
+                {
+                    finalMessage = "Player " + 1 + " wins the game!";
+                    gameState = "results";
+                    EnterResultsState();
                 }
 
                 //End Gameplay State Logic
@@ -163,13 +183,36 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("Passing an invalid player number through function. Keep value between 1 and 4");
             return;
         }
-
-        playerScores[playerNumber - 1] += addToScore;
-
-        if (playerScores[playerNumber - 1] > pointsToWinGame)
+        switch (playerNumber) 
         {
-            Debug.Log("Player " + playerNumber + " wins the game!");
-            ChangeGameState("results");
+
+            case 1:
+                pOneScore += addToScore;
+                CheckIfWin(pOneScore, 1);
+                break;
+            case 2:
+                pTwoScore += addToScore;
+                CheckIfWin(pTwoScore, 2);
+                break;
+            case 3:
+                pThreeScore += addToScore;
+                CheckIfWin(pThreeScore, 3);
+                break;
+            case 4:
+                pFourScore += addToScore;
+                CheckIfWin(pFourScore, 4);
+                break;
+
+        }
+    }
+
+    private void CheckIfWin(int playerScore, int playerNum)
+    {
+        if (playerScore > pointsToWinGame)
+        {
+            finalMessage = "Player " + playerNum + " wins the game!";
+            gameState = "results";
+            EnterResultsState();
         }
     }
 
@@ -253,33 +296,29 @@ public class GameManager : MonoBehaviour
     public void ChangeGameState(string newState)
     {   
         gameState = newState.ToLower();
-        startMethods[gameState]();
     }
 
 
     /*** ENTERING STATE METHODS ***/
-    private void EnterMenuState()
+    public void EnterMenuState()
     {
         Debug.Log("Entering Menu State");
+        ChangeScene("start_scene");
     }
     private void EnterGameplayState()
     {
         Debug.Log("Entering Gameplay State");
         playerTurn = 1;
-        board = Instantiate(boardPrefab);
-        player = Instantiate(playerPrefab);
-        player.name = "Player 1";
-        for (int i = 0; i < 3; i++)
-        {
-            AI[i] = Instantiate(AIPrefab);
-            AI[i].name = "AI " + (i + 1) + " / Player " + (i + 2) ;
-            AI[i].GetComponent<AIScript>().playerNumber = i + 2;
-            //IMPLEMENT LOGIC FOR DIFFERENT POSITIONS PER AI (different sides of the board)
-        }
     }
     private void EnterResultsState()
     {
         Debug.Log("Entering Results State");
+        ChangeGameState("menu");
+        ChangeScene("end_scene");
+        pOneScore = 0;
+        pTwoScore = 0;
+        pThreeScore = 0;
+        pFourScore = 0;
     }
     #endregion
 }

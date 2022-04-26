@@ -70,5 +70,4 @@ public class StartCanvas : MonoBehaviour
     {
         canvas.SetActive(true); //unhide main menu
     }
-
 }

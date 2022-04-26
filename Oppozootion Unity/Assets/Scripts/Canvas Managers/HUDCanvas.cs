@@ -27,6 +27,7 @@ public class HUDCanvas : MonoBehaviour
     public Text textboxP4; //textbox for player 4's score
     public Text textboxMaxScore; //textbox for max score
     public Text textboxTimer; //textbox for timer
+    public Text currentPlayer;
 
     //GM Data
     private int scoreP1;
@@ -67,10 +68,10 @@ public class HUDCanvas : MonoBehaviour
     void GetGameStats()
     {
         //get all the player's score from the game manager
-        scoreP1 = GameManager.pOneScore;
-        scoreP2 = GameManager.pTwoScore;
-        scoreP3 = GameManager.pThreeScore;
-        scoreP4 = GameManager.pFourScore;
+        scoreP1 = gm.pOneScore;
+        scoreP2 = gm.pTwoScore;
+        scoreP3 = gm.pThreeScore;
+        scoreP4 = gm.pFourScore;
         //timer = gm.turnTimer;
 
     }
@@ -84,6 +85,7 @@ public class HUDCanvas : MonoBehaviour
         if (textboxP4) { textboxP4.text = "Player 4: " + scoreP4; }
         if (textboxMaxScore) { textboxMaxScore.text = "Max Score: " + maxScore; }
         if (textboxTimer) { textboxTimer.text = "Time Remaining: " + Mathf.Ceil(gm.turnTimer - timer); } //displays timer rounded to the nearest decimal
+        currentPlayer.text = "Current Player: " + gm.playerTurn;
 
     }//end SetHUD()
 

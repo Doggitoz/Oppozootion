@@ -116,6 +116,10 @@ public class BundleCards : MonoBehaviour
         //Remove each card used in bundle completion
         foreach (GameObject card in cardInventory)
         {
+            if (card == null)
+            {
+                continue;
+            }
             if(card.name== "xsdasd") 
             { 
                 this.transform.parent.GetComponent<Inventory>().RemoveCard(card);
@@ -124,7 +128,9 @@ public class BundleCards : MonoBehaviour
         }
 
         //Update Player Score
-        gm.UpdatePlayerScore(gm.playerTurn, pointReward);
+        gm.pOneScore += pointReward;
+        this.transform.parent.GetComponent<Inventory>().RemoveBundle(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
     bool CheckForCard(int j)

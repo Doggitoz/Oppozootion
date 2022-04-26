@@ -122,4 +122,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void RemoveBundle(GameObject obj)
+    {
+        for (int i = 0; i < bundleInvtory.Length; i++)
+        {
+            if (bundleInvtory[i] == obj)
+            {
+                bundleInvtory[i] = null;
+                return;
+            }
+        }
+    }
+
 }

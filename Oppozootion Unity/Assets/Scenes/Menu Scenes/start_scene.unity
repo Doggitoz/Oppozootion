@@ -249,6 +249,11 @@ MonoBehaviour:
   gameCredits: 'Created by: '
   copyrightDate: 2022
   tempHolder: 
+  pOneScore: 0
+  pTwoScore: 0
+  pThreeScore: 0
+  pFourScore: 0
+  finalMessage: 
   player: {fileID: 0}
   AI:
   - {fileID: 0}
@@ -1109,7 +1114,7 @@ MonoBehaviour:
     card\r\n   -Complete a bundle\r\n\r\nInstructions:\r\n   -Goal is to reach the
     maximum points before any other player\r\n   -Gain points by completing bundles
     of animals\r\n   -Choose from on of three actions listed in Rules\r\n   -Complete
-    a bundle at any time\n"
+    a bundle at any time\n   -Press 1 and 2 to switch between cameras"
 --- !u!222 &1125991714
 CanvasRenderer:
   m_ObjectHideFlags: 0
