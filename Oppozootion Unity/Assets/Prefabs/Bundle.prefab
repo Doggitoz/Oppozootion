@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bundleInfo: 
-  cardList: []
   bundleUI: {fileID: 3592791648634342374}
+  cardList: []
   playerNumber: 0
 --- !u!222 &4677080115497270835
 CanvasRenderer:
@@ -285,7 +285,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7625674151730596067}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -1.14}
   m_LocalScale: {x: 0.005, y: 0.019999998, z: 1}
   m_Children:

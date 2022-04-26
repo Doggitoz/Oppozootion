@@ -18,7 +18,7 @@ public class BundleCards : MonoBehaviour
 {
 
     public string bundleInfo;
-    [SerializeField] private Text bundleUI;
+    public Text bundleUI;
 
     [Header("Set in Inspector")]
     public List<ScriptableObject> cardList;
@@ -45,7 +45,6 @@ public class BundleCards : MonoBehaviour
             pointReward += 1;
             int randomAnimalIndex = Random.Range(0, 8);
             Debug.Log("Added animal " + cardList[randomAnimalIndex].name);
-            bundleInfo += cardList[randomAnimalIndex].name;
             bundleGoals.Add(cardList[randomAnimalIndex]);
             if (Random.Range(0, 101) > 75)
             {
@@ -54,7 +53,11 @@ public class BundleCards : MonoBehaviour
                 pointReward += 2;
             }
         }
-        Debug.Log("Point reward = " + pointReward);
+        foreach (Cards item in bundleGoals)
+        {
+            bundleInfo += item.animalName + "\n";
+        }
+        bundleUI.text = bundleInfo;
     }
 
     public void RemoveAnimal(string animalName)
@@ -85,10 +88,5 @@ public class BundleCards : MonoBehaviour
     public void CompleteBundle()
     {
         Debug.Log("Name: " + this.transform.parent.name);
-    }
-    public void Init()
-    {
-
-        UIText.GetComponent<Text>().text = bundleInfo;
     }
 }
