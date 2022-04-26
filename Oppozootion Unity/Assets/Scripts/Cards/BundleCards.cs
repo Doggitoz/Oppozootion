@@ -12,11 +12,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BundleCards : MonoBehaviour
 {
+
+    public string bundleInfo;
+    [SerializeField] private Text bundleUI;
+
     [Header("Set in Inspector")]
     public List<ScriptableObject> cardList;
+    
 
     [HideInInspector]
     public int playerNumber;
@@ -26,6 +32,7 @@ public class BundleCards : MonoBehaviour
 
     private void Start()
     {
+        bundleInfo = "";
         gm = GameManager.GM;
         if (cardList == null)
         {
@@ -38,6 +45,7 @@ public class BundleCards : MonoBehaviour
             pointReward += 1;
             int randomAnimalIndex = Random.Range(0, 8);
             Debug.Log("Added animal " + cardList[randomAnimalIndex].name);
+            bundleInfo += cardList[randomAnimalIndex].name;
             bundleGoals.Add(cardList[randomAnimalIndex]);
             if (Random.Range(0, 101) > 75)
             {
@@ -77,5 +85,10 @@ public class BundleCards : MonoBehaviour
     public void CompleteBundle()
     {
         Debug.Log("Name: " + this.transform.parent.name);
+    }
+    public void Init()
+    {
+
+        UIText.GetComponent<Text>().text = bundleInfo;
     }
 }
